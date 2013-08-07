@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule captcha.png math_captcha.php
