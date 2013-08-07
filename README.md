@@ -59,7 +59,7 @@ else {
 Note that, without unsetting the session variable every time the user submits an answer, the captcha can be bypassed very easily. 
 An attacker can fetch the captcha image just one time, so the session variable will be set and then brute force the form without 
 fetching again a new captcha image. So it is <strong>very important</strong> to do this <code>unset($_SESSION['math_captcha']);</code>, 
-every time the user submit an answer for the captcha.
+every time the user submits an answer for the captcha.
 </p>
 
 <p>
