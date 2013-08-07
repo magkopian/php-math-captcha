@@ -1,2 +1,5 @@
+#Copyright (c) 2013 Manolis Agkopian
+#See the file LICENCE for copying permission.
+
 RewriteEngine on
 RewriteRule captcha.png math_captcha.php
