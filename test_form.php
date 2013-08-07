@@ -1,26 +1,31 @@
 <?php
-	session_start();
+/**********************************************\
+* Copyright (c) 2013 Manolis Agkopian          *
+* See the file LICENCE for copying permission. *
+\**********************************************/
 
-	$msg = '';
-	if (isset($_POST['submit']) && !empty($_POST['submit']) && $_POST['submit'] == 'Submit') { //check if form has been submited
-		if (!isset($_SESSION['math_captcha']) || empty($_SESSION['math_captcha'])) { //check if math captcha has been generated
-			$msg = '<span class="error">An unexpected error has been occurred</span>';
-		}
-		else if (!isset($_POST['captcha_ans']) || empty($_POST['captcha_ans'])) { //check if user answered the question
-			$msg = '<span class="error">Please fill the answer to the math question</span>';
+session_start();
+
+$msg = '';
+if (isset($_POST['submit']) && !empty($_POST['submit']) && $_POST['submit'] == 'Submit') { //check if form has been submited
+	if (!isset($_SESSION['math_captcha']) || empty($_SESSION['math_captcha'])) { //check if math captcha has been generated
+		$msg = '<span class="error">An unexpected error has been occurred</span>';
+	}
+	else if (!isset($_POST['captcha_ans']) || empty($_POST['captcha_ans'])) { //check if user answered the question
+		$msg = '<span class="error">Please fill the answer to the math question</span>';
+	}
+	else {
+		$math_captcha = $_SESSION['math_captcha'];
+		unset($_SESSION['math_captcha']);
+		
+		if ((int) trim($_POST['captcha_ans']) === $math_captcha) { //validate the answer
+			$msg = '<span class="success">SUCCESS</span>'; //in a real application here you can register, loggin your user etc
 		}
 		else {
-			$math_captcha = $_SESSION['math_captcha'];
-			unset($_SESSION['math_captcha']);
-			
-			if ((int) trim($_POST['captcha_ans']) === $math_captcha) { //validate the answer
-				$msg = '<span class="success">SUCCESS</span>'; //in a real application here you can register, loggin your user etc
-			}
-			else {
-				$msg = '<span class="error">You didn\'t answered the question correctly</span>';
-			}
+			$msg = '<span class="error">You didn\'t answered the question correctly</span>';
 		}
 	}
+}
 ?>
 <!DOCTYPE html>
 <html>
