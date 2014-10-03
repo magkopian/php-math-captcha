@@ -74,5 +74,3 @@ GD 2.0.1 or later (2.0.28 or later is recommended)
 </body>
 </html>
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/magkopian/php-math-captcha/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
