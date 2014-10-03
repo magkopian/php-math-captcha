@@ -7,14 +7,16 @@ class MathCaptcha {
 	private $addNum2;
 	private $answer = null;
 	private $captchaImg = null;
-	private $sessionName = 'math_captcha';
+	private $captchaID;
 	
-	public function __construct() {
+	public function __construct( $captchaID = '0' ) {
+		
+		$this->captchaID = 'math_captcha_' . $captchaID;
 		
 		// Set the captcha result from last generated captcha and unset it from the session
-		if ( isset($_SESSION[$this->sessionName]) && !empty($_SESSION[$this->sessionName]) ) {
-			$this->answer = $_SESSION[$this->sessionName];
-			unset($_SESSION[$this->sessionName]);
+		if ( isset($_SESSION[$this->captchaID]) && !empty($_SESSION[$this->captchaID]) ) {
+			$this->answer = $_SESSION[$this->captchaID];
+			unset($_SESSION[$this->captchaID]);
 		}
 		
 	}
@@ -25,7 +27,7 @@ class MathCaptcha {
 		$this->addNum2 = rand(0, 10) * rand(1, 3);
 		
 		// Set the captcha result for current captcha and set it to the session for later check
-		$_SESSION[$this->sessionName] = $this->answer = (int) ($this->addNum1 + $this->addNum2);
+		$_SESSION[$this->captchaID] = $this->answer = (int) ($this->addNum1 + $this->addNum2);
 		
 		// Create a canvas
 		if ( ($this->captchaImg = @imagecreatetruecolor(99, 19)) === false ) {

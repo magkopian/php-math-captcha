@@ -7,63 +7,50 @@
 
 <h3>Description:</h3>
 <p>
-This is a simple PHP script for creating images with simple mathematical questions (Math CAPTCHAs) to protect the forms of your website from spambots.
+This is a PHP class for generating images with simple mathematical questions (Math CAPTCHAs) to protect the forms of your website from spambots.
 </p>
 
 
 <h3>How to Use:</h3>
 
-<p>
-To use the script, you have create an image tag that references the captcha.png file inside your form, like this:
+<h4>To generate a captcha you simply:</h4>
 
 <pre>
-&lt;img src="captcha.png" alt=""&gt;
+session_start();
+
+$mathCaptcha = new MathCaptcha();
+
+$mathCaptcha->generate();
+$mathCaptcha->output();
 </pre>
 
+<p>
+The `MathCaptcha` class makes use of session variables so you have to call the `session_start()` function before instantiating a `MathCaptcha` object.
 </p>
 
 <p>
-Also, inside your form you have to put a textbox to return the user’s answer to your php script that processes your form, like this:
-
-<pre>
-&lt;input type="text" name="captcha_ans"&gt;
-</pre>
-
+You can optionally supply an identifier for the captcha, to the constructor of the `MathCaptcha` class, if you want to use multiple captchas in your website.
 </p>
 
-<p>
-To verify the user’s answer, inside the script that processes your form, you have to check if his answer matches the session variable $_SESSION['math_captcha']:
+<h4>To verify the user's answer you simply:</h4>
 
 <pre>
-if ( !isset($_SESSION['math_captcha']) || empty($_SESSION['math_captcha']) ) {
-	//the math captcha has not been generated
-}
-else if ( !isset($_POST['captcha_ans']) || empty($_POST['captcha_ans']) ) {
-	//the user didn't answered the question
+$mathCaptcha = new MathCaptcha();
+
+if ( $mathCaptcha->check($captcha_answer) === true ) {
+	// Correct answer
 }
 else {
-
-	$math_captcha = $_SESSION['math_captcha'];
-	unset($_SESSION['math_captcha']);
-	
-	if ( (int) trim($_POST['captcha_ans']) === $math_captcha ) {
-		//the answer is right!
-	}
-	else {
-		//the answer is wrong
-	}
-	
+	// Incorrect answer
 }
 </pre>
 
-Note that, without unsetting the session variable every time the user submits an answer, the captcha can be bypassed very easily. 
-An attacker can fetch the captcha image just one time, so the session variable will be set and then brute force the form without 
-fetching again a new captcha image. So it is <strong>very important</strong> to do this <code>unset($_SESSION['math_captcha']);</code>, 
-every time the user submits an answer for the captcha.
+<p>
+If you use more than one captchas in your website you need also to supply the identifier of the captcha, to the constructor of the `MathCaptcha` class.
 </p>
 
 <p>
-Check out the test_form.php file for a working example.
+Check out the `test_form.php` and `math_captcha.php` files for a working example.
 </p>
 
 
