@@ -4,10 +4,9 @@
 * See the file LICENCE for copying permission. *
 \**********************************************/
 
-session_start();
+require_once 'vendor/autoload.php';
 
-require_once('classes/MathCaptcha.php');
-require_once('classes/MathCaptchaException.php');
+session_start();
 
 $mathCaptcha = new MathCaptcha();
 $mathCaptcha->generate();

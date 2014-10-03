@@ -1,0 +1,12 @@
+{
+	"name": "magkopian/php-math-captcha",
+	"description": "A simple class for generating and validating math captcha images",
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"autoload": {
+		"classmap": [
+			"classes"
+		]
+	}
+}
