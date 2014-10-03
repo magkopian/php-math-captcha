@@ -35,6 +35,8 @@ You can optionally supply an identifier for the captcha, to the constructor of t
 <h4>To verify the user's answer you simply:</h4>
 
 <pre>
+session_start();
+
 $mathCaptcha = new MathCaptcha();
 
 if ( $mathCaptcha->check($captcha_answer) === true ) {
