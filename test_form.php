@@ -6,29 +6,26 @@
 
 session_start();
 
+require_once('classes/MathCaptcha.php');
+require_once('classes/MathCaptchaException.php');
+
 $msg = '';
 
 // Check if form has been submited
 if ( isset($_POST['submit']) && !empty($_POST['submit']) ) {
 
-	// Check if math captcha has been generated
-	if ( !isset($_SESSION['math_captcha']) || empty($_SESSION['math_captcha']) ) {
-		
-		$msg = '<span class="error">An unexpected error has been occurred</span>';
-		
-	}// Check if user answered the question
-	else if ( !isset($_POST['captcha_ans']) || empty($_POST['captcha_ans']) ) {
+	// Check if user answered the question
+	if ( !isset($_POST['captcha_ans']) || $_POST['captcha_ans'] === '' ) {
 		
 		$msg = '<span class="error">Please fill the answer to the math question</span>';
 		
 	}
 	else {
 	
-		$math_captcha = $_SESSION['math_captcha'];
-		unset($_SESSION['math_captcha']);
+		$mathCaptcha = new MathCaptcha();
 		
 		// Validate the answer
-		if ( (int) trim($_POST['captcha_ans']) === $math_captcha ) {
+		if ( $mathCaptcha->check($_POST['captcha_ans']) === true ) {
 			
 			// In a real application here you can register/login the user, insert a comment in the database etc
 			$msg = '<span class="success">SUCCESS</span>';
