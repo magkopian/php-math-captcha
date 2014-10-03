@@ -58,7 +58,7 @@ Check out the `test_form.php` and `math_captcha.php` files for a working example
 
 <h3>Requirements:</h3>
 <p>
-GD 2.0.1 or later (2.0.28 or later is recommended)
+PHP 5, GD 2.0.1 or later (2.0.28 or later is recommended)
 </p>
 </body>
 </html>
