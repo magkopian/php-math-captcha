@@ -8,6 +8,13 @@ require_once 'vendor/autoload.php';
 
 session_start();
 
-$mathCaptcha = new MathCaptcha();
-$mathCaptcha->generate();
-$mathCaptcha->output();
+$mathCaptcha = new MathCaptcha\MathCaptcha();
+
+try {
+	$mathCaptcha->generate();
+	$mathCaptcha->output();
+}
+catch ( MathCaptcha\MathCaptchaException $e ) {
+	// Here you normally log the error, and you can output an error image
+	// to notify the user that something went wrong, if you want.
+}

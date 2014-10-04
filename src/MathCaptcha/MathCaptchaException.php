@@ -4,4 +4,6 @@
 * See the file LICENCE for copying permission. *
 \**********************************************/
 
-class MathCaptchaException extends Exception {}
+namespace MathCaptcha;
+
+class MathCaptchaException extends \Exception {}

@@ -1,12 +1,20 @@
 {
 	"name": "magkopian/php-math-captcha",
 	"description": "A simple class for generating and validating math captcha images",
+	"keywords": ["captcha","math captcha","antispam","captcha class"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Manolis Agkopian",
+			"email": "m.agkopian@gmail.com"
+		}
+	],
 	"require": {
 		"php": ">=5.0.0"
 	},
 	"autoload": {
-		"classmap": [
-			"classes"
-		]
+		"psr-0": { 
+			"MathCaptcha": "src/" 
+		}
 	}
 }

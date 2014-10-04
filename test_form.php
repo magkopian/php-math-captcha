@@ -21,7 +21,7 @@ if ( isset($_POST['submit']) && !empty($_POST['submit']) ) {
 	}
 	else {
 	
-		$mathCaptcha = new MathCaptcha();
+		$mathCaptcha = new MathCaptcha\MathCaptcha();
 		
 		// Validate the answer
 		if ( $mathCaptcha->check($_POST['captcha_ans']) === true ) {

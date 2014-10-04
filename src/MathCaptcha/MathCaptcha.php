@@ -4,6 +4,8 @@
 * See the file LICENCE for copying permission. *
 \**********************************************/
 
+namespace MathCaptcha;
+
 class MathCaptcha {
 	private $addNum1;
 	private $addNum2;
