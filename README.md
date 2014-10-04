@@ -18,7 +18,7 @@ This is a PHP class for generating images with simple mathematical questions (Ma
 <pre>
 session_start();
 
-$mathCaptcha = new MathCaptcha();
+$mathCaptcha = new MathCaptcha\MathCaptcha();
 
 $mathCaptcha->generate();
 $mathCaptcha->output();
@@ -37,7 +37,7 @@ You can optionally supply an identifier for the captcha, to the constructor of t
 <pre>
 session_start();
 
-$mathCaptcha = new MathCaptcha();
+$mathCaptcha = new MathCaptcha\MathCaptcha();
 
 if ( $mathCaptcha->check($captcha_answer) === true ) {
 	// Correct answer
