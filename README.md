@@ -10,6 +10,33 @@
 This is a PHP class for generating images with simple mathematical questions (Math CAPTCHAs) to protect the forms of your website from spambots.
 </p>
 
+<h3>How to Install:</h3>
+
+<p>
+	You can install the class very easily by using composer. You just have to run:
+</p>
+<pre>
+composer require magkopian/php-math-captcha:1.0.*
+</pre>
+<p>
+	Or add it as a dependency in you `composer.json` file:
+</p>
+<pre>
+{
+	"require": {
+		"magkopian/php-math-captcha": "1.0.*"
+	}
+}
+</pre>
+<p>
+	And then run:
+</p>
+<pre>
+composer update
+</pre>
+<p>
+	Also, don't forget to include composer `autoload.php` file to your code.
+</p>
 
 <h3>How to Use:</h3>
 
