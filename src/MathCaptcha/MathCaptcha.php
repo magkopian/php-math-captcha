@@ -11,14 +11,14 @@ class MathCaptcha {
 	private $addNum2;
 	private $answer = null;
 	private $captchaImg = null;
-	private $captchaID;
+	private $captchaID = 0;
 	
-	public function __construct( $captchaID = '0' ) {
+	public function __construct( $captchaID = 0 ) {
 		
 		$this->captchaID = 'math_captcha_' . $captchaID;
 		
 		// Set the captcha result from last generated captcha and unset it from the session
-		if ( isset($_SESSION[$this->captchaID]) && !empty($_SESSION[$this->captchaID]) ) {
+		if ( isset($_SESSION[$this->captchaID]) ) {
 			$this->answer = $_SESSION[$this->captchaID];
 			unset($_SESSION[$this->captchaID]);
 		}
@@ -31,8 +31,8 @@ class MathCaptcha {
 		$this->addNum2 = rand(0, 10) * rand(1, 3);
 		
 		// Set the captcha result for current captcha and set it to the session for later check
-		$_SESSION[$this->captchaID] = $this->answer = (int) ($this->addNum1 + $this->addNum2);
-		
+		$_SESSION[$this->captchaID] = $this->answer = $this->addNum1 + $this->addNum2;
+
 		// Create a canvas
 		if ( ($this->captchaImg = @imagecreatetruecolor(99, 19)) === false ) {
 			throw new MathCaptchaException('Creation of true color image failed');
@@ -69,7 +69,7 @@ class MathCaptcha {
 		if ( $this->answer === null ) {
 			return false;
 		}
-		
+
 		// Validate captcha
 		if ( $this->answer === (int) trim($answer) ) {
 			return true;
